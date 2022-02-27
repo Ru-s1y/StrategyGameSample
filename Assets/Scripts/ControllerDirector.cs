@@ -6,9 +6,13 @@ using System;
 public class ControllerDirector : MonoBehaviour
 {
     public GameObject prefab;
+    public GameObject UnitMarkerPrefab;
+    public GameObject TargetMarkerPrefab;
     public GameObject selectAreaPrefab;
+
     public string unitTagName = "Player";
     public GameObject[] units;
+    private bool unitsExist { get { return units != null; } }
 
     private GameObject selectArea;
 
@@ -57,15 +61,19 @@ public class ControllerDirector : MonoBehaviour
             if (mouseUpPoint != Vector3.zero)
             {
                 inputing = false;
-                // 選択処理
+
+                if (unitsExist)
+                    DestroyCurrentMarker(); // 既存マーカーの削除
+
                 SetSelectUnit();
+                SetUnitMarker();
 
                 Destroy(selectArea);
             }
         }
 
         // 右クリック時
-        if (Input.GetMouseButtonDown(1) && units != null)
+        if (Input.GetMouseButtonDown(1) && unitsExist)
         {
             Vector3 point = GetTouchPoint();
             foreach (GameObject unit in units)
@@ -111,5 +119,34 @@ public class ControllerDirector : MonoBehaviour
             }
         }
         units = temp;
+    }
+
+    private void DestroyCurrentMarker()
+    {
+        if (!unitsExist)
+            return;
+
+        foreach (GameObject unit in units)
+        {
+            if (unit.transform.Find("UnitMarker").gameObject)
+                Destroy(unit.transform.Find("UnitMarker").gameObject);
+        }
+    }
+
+    private void SetUnitMarker()
+    {
+        if(!unitsExist)
+            return;
+
+        foreach(GameObject unit in units)
+        {
+            Vector3 markerPos = unit.transform.position;
+            float unitHeight = unit.GetComponent<CapsuleCollider>().height;
+            markerPos.y += unitHeight + 0.5f;
+            Vector3 markerRotate = new Vector3(180, 0, 0);
+            GameObject marker = (GameObject)Instantiate(UnitMarkerPrefab, markerPos, Quaternion.Euler(markerRotate));
+            marker.name = "UnitMarker";
+            marker.transform.parent = unit.transform;
+        }
     }
 }
