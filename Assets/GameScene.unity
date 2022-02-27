@@ -153,6 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1457784101953716781, guid: 9a11a00a40fdd41a3a8143f0ac0c9b24, type: 3}
+  UnitMarkerPrefab: {fileID: 231046172413740973, guid: 9f84ae5df0d164e48a8528de8d47da6d, type: 3}
+  TargetMarkerPrefab: {fileID: 231046172413740973, guid: 4d5aa225f1ad54c4a8b46bad5c48b7c3, type: 3}
   selectAreaPrefab: {fileID: 8155791297315065666, guid: 71f5ab010790242f7abd3ab8b12e0fa5, type: 3}
   unitTagName: Player
   units: []
@@ -977,15 +979,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 829535298720078262, guid: 96b94c5e5c022470b8fbda872dd01ebf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 829535298720078262, guid: 96b94c5e5c022470b8fbda872dd01ebf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 829535298720078262, guid: 96b94c5e5c022470b8fbda872dd01ebf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.93
       objectReference: {fileID: 0}
     - target: {fileID: 829535298720078262, guid: 96b94c5e5c022470b8fbda872dd01ebf, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1018,6 +1020,10 @@ PrefabInstance:
     - target: {fileID: 829535298720105878, guid: 96b94c5e5c022470b8fbda872dd01ebf, type: 3}
       propertyPath: m_Name
       value: deb_Goblin01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8740501348073555344, guid: 96b94c5e5c022470b8fbda872dd01ebf, type: 3}
+      propertyPath: m_Center.y
+      value: 0.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96b94c5e5c022470b8fbda872dd01ebf, type: 3}
