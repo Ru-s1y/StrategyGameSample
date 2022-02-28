@@ -9,6 +9,7 @@ public class ControllerDirector : MonoBehaviour
     public GameObject UnitMarkerPrefab;
     public GameObject TargetMarkerPrefab;
     public GameObject selectAreaPrefab;
+    public GameObject targetMarker;
 
     public string unitTagName = "Player";
     public GameObject[] units;
@@ -19,14 +20,22 @@ public class ControllerDirector : MonoBehaviour
     private Vector3 mouseDownPoint;
     private Vector3 mousePressPoint;
     private Vector3 mouseUpPoint;
+    private Vector3 markerRotate;
 
     private bool inputing = false;
+    void Start()
+    {
+        markerRotate = new Vector3(180, 0, 0);
+    }
 
     void Update()
     {
         // クリック押した時
         if (Input.GetMouseButtonDown(0) && !inputing)
         {
+            if (targetMarker != null)
+                Destroy(targetMarker);
+
             mouseDownPoint = GetTouchPoint();
             if (mouseDownPoint != Vector3.zero)
             {
@@ -76,11 +85,18 @@ public class ControllerDirector : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && unitsExist)
         {
             Vector3 point = GetTouchPoint();
+
+            if (targetMarker != null)
+                Destroy(targetMarker.gameObject);
+
+            point.y += 0.5f;
+            targetMarker = (GameObject)Instantiate(TargetMarkerPrefab, point, Quaternion.Euler(markerRotate));
+
             foreach (GameObject unit in units)
             {
                 UnitMove unitMove = unit.GetComponent<UnitMove>();
-                unitMove.goal = point;
-                unitMove.Move();
+                unitMove.targetMarker = targetMarker;
+                unitMove.Move(point);
             }
         }
     }
@@ -143,7 +159,6 @@ public class ControllerDirector : MonoBehaviour
             Vector3 markerPos = unit.transform.position;
             float unitHeight = unit.GetComponent<CapsuleCollider>().height;
             markerPos.y += unitHeight + 0.5f;
-            Vector3 markerRotate = new Vector3(180, 0, 0);
             GameObject marker = (GameObject)Instantiate(UnitMarkerPrefab, markerPos, Quaternion.Euler(markerRotate));
             marker.name = "UnitMarker";
             marker.transform.parent = unit.transform;
