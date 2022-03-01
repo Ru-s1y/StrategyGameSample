@@ -8,9 +8,6 @@ public class UnitMove : MonoBehaviour
     public Vector3 goal;
     public GameObject targetMarker;
 
-    private float dis;
-
-    // Start is called before the first frame update
     void Start()
     {
         agent    = GetComponent<NavMeshAgent>();
@@ -26,6 +23,7 @@ public class UnitMove : MonoBehaviour
         }
     }
 
+    //NavMeshAgentに目標地点を伝える
     public void Move(Vector3 point)
     {
         goal = point;
