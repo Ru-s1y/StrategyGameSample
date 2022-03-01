@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public float panSpeed = 100.0f;
-    public float scrollSpeed = 5f;
+    public float panSpeed = 10f;
+    public float scrollSpeed = 10f;
 
-    public float minY = 200f;
-    public float maxY = 400f;
+    public float minY = 2.5f;
+    public float maxY = 20f;
+
+    public float lerpSpeed = 5f;
+    public float cameraRotateSpeed = 2f;
+
+    private float scroll = 0f;
+    private Vector3 position;
+    private Vector3 rotateAngle;
 
     void Update()
     {
@@ -29,11 +36,24 @@ public class CameraController : MonoBehaviour
             transform.Translate(Vector3.right * panSpeed * Time.deltaTime, Space.World);
         }
 
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
-        Vector3 pos = transform.position;
+        scroll = Input.GetAxis("Mouse ScrollWheel");
+        transform.position    = SetScrollHeight();
+        transform.eulerAngles = SetScrollAngleX();
+    }
 
+    // カメラの高さ調節
+    private Vector3 SetScrollHeight()
+    {
+        Vector3 pos = transform.position;
         pos.y -= scroll * 1000 * scrollSpeed * Time.deltaTime;
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
-        transform.position = pos;
+        return position = Vector3.Lerp(transform.position, pos, Time.deltaTime * lerpSpeed);
+    }
+
+    // カメラの縦回転調整
+    private Vector3 SetScrollAngleX()
+    {
+        float rotateX  = (position.y + 10f) * cameraRotateSpeed;
+        return rotateAngle = new Vector3(rotateX, transform.eulerAngles.y, transform.eulerAngles.z);
     }
 }

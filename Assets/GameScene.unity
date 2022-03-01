@@ -506,9 +506,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panSpeed: 10
-  scrollSpeed: 5
-  minY: 5
+  scrollSpeed: 7.5
+  minY: 2.5
   maxY: 20
+  lerpSpeed: 5
+  cameraRotateSpeed: 2
 --- !u!4 &1729197577 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8783306491909106419, guid: f02116c209ecd9e488fc4d2cd8996133, type: 3}
