@@ -13,6 +13,10 @@ public class CameraController : MonoBehaviour
     public float lerpSpeed = 5f;
     public float cameraRotateSpeed = 2f;
 
+    private float scroll = 0f;
+    private Vector3 position;
+    private Vector3 rotateAngle;
+
     void Update()
     {
         if(Input.GetKey("w"))
@@ -32,17 +36,24 @@ public class CameraController : MonoBehaviour
             transform.Translate(Vector3.right * panSpeed * Time.deltaTime, Space.World);
         }
 
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        scroll = Input.GetAxis("Mouse ScrollWheel");
+        transform.position    = SetScrollHeight();
+        transform.eulerAngles = SetScrollAngleX();
+    }
 
+    // カメラの高さ調節
+    private Vector3 SetScrollHeight()
+    {
         Vector3 pos = transform.position;
         pos.y -= scroll * 1000 * scrollSpeed * Time.deltaTime;
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
-        pos = Vector3.Lerp(transform.position, pos, Time.deltaTime * lerpSpeed);
+        return position = Vector3.Lerp(transform.position, pos, Time.deltaTime * lerpSpeed);
+    }
 
-        float rotateX  = (pos.y + 10f) * cameraRotateSpeed;
-        Vector3 rotate = new Vector3(rotateX, 0, 0);
-
-        transform.eulerAngles = rotate;
-        transform.position    = pos;
+    // カメラの縦回転調整
+    private Vector3 SetScrollAngleX()
+    {
+        float rotateX  = (position.y + 10f) * cameraRotateSpeed;
+        return rotateAngle = new Vector3(rotateX, transform.eulerAngles.y, transform.eulerAngles.z);
     }
 }
