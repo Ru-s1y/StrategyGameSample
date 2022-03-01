@@ -7,6 +7,7 @@ public class UnitMove : MonoBehaviour
     private Animator animator;
     public Vector3 goal;
     public GameObject targetMarker;
+    public float distance = 0.5f;
 
     void Start()
     {
@@ -17,8 +18,9 @@ public class UnitMove : MonoBehaviour
     void Update()
     {
         animator.SetFloat("Speed", agent.velocity.sqrMagnitude);
-        if (targetMarker != null && agent.remainingDistance < 0.5f)
+        if (targetMarker != null && agent.remainingDistance < distance)
         {
+            agent.isStopped = true;
             Destroy(targetMarker);
         }
     }
@@ -28,5 +30,6 @@ public class UnitMove : MonoBehaviour
     {
         goal = point;
         agent.SetDestination(goal);
+        agent.isStopped = false;
     }
 }
