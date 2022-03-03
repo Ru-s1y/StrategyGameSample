@@ -9,8 +9,8 @@ public class ResourcesBluePrint
 
     public ResourcesBluePrint(int wood, int stone, int food)
     {
-        this.wood = wood;
+        this.wood  = wood;
         this.stone = stone;
-        this.food = food;
+        this.food  = food;
     }
 }

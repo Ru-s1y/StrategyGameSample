@@ -19,6 +19,15 @@ public class MarkerBuild : MonoBehaviour
         targetColor  = new Color32(255, 0, 0, 137);
     }
 
+    // 指定位置にマーカーを生成
+    public void SetMarker(Vector3 markerPos)
+    {
+        markerPos.y += 0.5f;
+        marker = (GameObject)Instantiate(markerPrefab, markerPos, Quaternion.Euler(markerRotate));
+        marker.GetComponent<Renderer>().material.color = targetColor;
+        marker.name = "TargetMarker";
+    }
+
     // ユニットにマーカーをつける
     public void SetUnitMarker(GameObject unit)
     {
@@ -32,21 +41,27 @@ public class MarkerBuild : MonoBehaviour
         marker.transform.parent = unit.transform;
     }
 
-    // 指定位置にマーカーを生成
-    public void SetMarker(Vector3 markerPos)
-    {
-        markerPos.y += 0.5f;
-        marker = (GameObject)Instantiate(markerPrefab, markerPos, Quaternion.Euler(markerRotate));
-        marker.GetComponent<Renderer>().material.color = targetColor;
-        marker.name = "TargetMarker";
-    }
-
     // ユニットマーカーの削除
     public void DestroyUnitMarker(GameObject unit)
     {
         if (unit.transform.Find("UnitMarker").gameObject)
-        {
             Destroy(unit.transform.Find("UnitMarker").gameObject);
-        }
+    }
+
+    // ターゲットオブジェクトにマーカーをつける
+    public void SetTargetMarker(GameObject target)
+    {
+        Vector3 targetPos  = target.transform.position;
+        float targetHeight = target.GetComponent<MeshCollider>().bounds.size.y;
+        targetPos.y += targetHeight;
+        SetMarker(targetPos);
+        marker.transform.parent = target.transform;
+    }
+
+    // ターゲットマーカーの削除
+    public void DestoryTargetMarker(GameObject target)
+    {
+        if (target.transform.Find("TargetMarker").gameObject)
+            Destroy(target.transform.Find("TargetMarker").gameObject);
     }
 }

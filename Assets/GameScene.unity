@@ -157,9 +157,12 @@ MonoBehaviour:
   targetMarker: {fileID: 0}
   unitMarkers: []
   markerBuild: {fileID: 0}
+  target: {fileID: 0}
   unitTagName: Player
   units: []
+  SphereRadius: 1
   inputing: 0
+  debugSphere: {fileID: 1457784101953716781, guid: 9a11a00a40fdd41a3a8143f0ac0c9b24, type: 3}
 --- !u!4 &521350846
 Transform:
   m_ObjectHideFlags: 0
@@ -406,8 +409,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ab778eb6c40f84464b17e824d9c76fae, type: 3}
-    m_FontSize: 36
+    m_Font: {fileID: 12800000, guid: 338d2c86dec3442daaf3c1e85c27e694, type: 3}
+    m_FontSize: 24
     m_FontStyle: 3
     m_BestFit: 0
     m_MinSize: 0
@@ -763,8 +766,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ab778eb6c40f84464b17e824d9c76fae, type: 3}
-    m_FontSize: 36
+    m_Font: {fileID: 12800000, guid: 338d2c86dec3442daaf3c1e85c27e694, type: 3}
+    m_FontSize: 24
     m_FontStyle: 3
     m_BestFit: 0
     m_MinSize: 0
@@ -989,7 +992,7 @@ GameObject:
   - component: {fileID: 1986340168}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Untagged
+  m_TagString: Terrian
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1171,8 +1174,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ab778eb6c40f84464b17e824d9c76fae, type: 3}
-    m_FontSize: 36
+    m_Font: {fileID: 12800000, guid: 338d2c86dec3442daaf3c1e85c27e694, type: 3}
+    m_FontSize: 24
     m_FontStyle: 3
     m_BestFit: 0
     m_MinSize: 0
