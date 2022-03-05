@@ -494,6 +494,7 @@ GameObject:
   - component: {fileID: 8740501348073555344}
   - component: {fileID: 5596467025583409821}
   - component: {fileID: 4703955112252709474}
+  - component: {fileID: 7252636436049206727}
   m_Layer: 0
   m_Name: deb_Goblin01
   m_TagString: Player
@@ -549,7 +550,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -566,7 +567,7 @@ CapsuleCollider:
   m_Radius: 0.3
   m_Height: 1.2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.58, z: 0}
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!114 &5596467025583409821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,6 +581,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goal: {x: 0, y: 0, z: 0}
+  target: {fileID: 0}
+  targetMarker: {fileID: 0}
+  distance: 0.5
+  die: 0
 --- !u!195 &4703955112252709474
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -602,6 +607,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7252636436049206727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829535298720105878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f7a991152524ea1859ca348831a29c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultHp: 15
+  defaultAtk: 3
 --- !u!1 &829535298720105880
 GameObject:
   m_ObjectHideFlags: 0

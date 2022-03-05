@@ -1,10 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BuildNavmesh : MonoBehaviour
+public class BuildNavMesh : MonoBehaviour
 {
-    void Awake ()
+    private NavMeshSurface navSur;
+    public float delayTime = 1f;
+
+    void Start()
     {
-        GetComponent<NavMeshSurface>().BuildNavMesh();
+        navSur = GameObject.Find("Earth").GetComponent<NavMeshSurface>();
+    }
+
+    public void RebuildNavMesh()
+    {
+        StartCoroutine("Bake");
+    }
+
+    IEnumerator Bake()
+    {
+        yield return new WaitForSeconds(delayTime);
+        navSur.BuildNavMesh();
+        Debug.Log("ビルドしました。");
     }
 }

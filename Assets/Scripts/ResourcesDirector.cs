@@ -50,7 +50,10 @@ public class ResourcesDirector : MonoBehaviour
 
     public void Decrease(string propertyName, int value)
     {
-        int updatedValue = GetPropertyValue(propertyName) - value;
+        int propValue = GetPropertyValue(propertyName);
+        int updatedValue = 0;
+        if (propValue >= value)
+            updatedValue = propValue - value;
         property.SetValue(resources, updatedValue);
     }
 }

@@ -95,6 +95,7 @@ public class ControllerDirector : MonoBehaviour
             foreach (GameObject unit in units)
             {
                 UnitMove unitMove = unit.GetComponent<UnitMove>();
+                unitMove.target       = target;
                 unitMove.targetMarker = targetMarker;
                 unitMove.Move(pointR);
             }
