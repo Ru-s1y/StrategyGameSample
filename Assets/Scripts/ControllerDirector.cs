@@ -34,7 +34,7 @@ public class ControllerDirector : MonoBehaviour
     void Start()
     {
         markerRotate = new Vector3(180, 0, 0);
-        markerBuild = gameObject.GetComponent<MarkerBuild>();
+        markerBuild  = gameObject.GetComponent<MarkerBuild>();
         units = null;
     }
 
@@ -63,16 +63,16 @@ public class ControllerDirector : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && inputing)
         {
             mouseUpPoint = GetTouchPoint();
-            if (mouseUpPoint != Vector3.zero)
-            {
-                if (unitsExist)
-                    DestroyCurrentMarker(); // 既存マーカーの削除
 
-                SetSelectUnit();
-                Destroy(selectArea);
-                SetUnitMarker();
-                inputing = false;
-            }
+            if (mouseUpPoint == Vector3.zero)
+                return;
+            if (unitsExist)
+                DestroyCurrentMarker(); // 既存マーカーの削除
+
+            SetSelectUnit();
+            Destroy(selectArea);
+            SetUnitMarker();
+            inputing = false;
         }
 
         // 右クリック時
@@ -116,7 +116,7 @@ public class ControllerDirector : MonoBehaviour
     // 選択範囲の描画処理
     private void DrawSelectArea()
     {
-        mousePressPoint = GetTouchPoint();
+        mousePressPoint   = GetTouchPoint();
         Renderer renderer = selectArea.GetComponent<Renderer>();
         float sizeX = renderer.bounds.size.x;
         float sizeZ = renderer.bounds.size.z;
@@ -149,12 +149,11 @@ public class ControllerDirector : MonoBehaviour
         GameObject[] temp = null;
         foreach (Collider collider in colliderList)
         {
-            if (collider.gameObject.CompareTag(unitTagName))
-            {
-                Array.Resize<GameObject>(ref temp, i + 1);
-                temp[i] = collider.gameObject;
-                i++;
-            }
+            if (!collider.gameObject.CompareTag(unitTagName))
+                continue;
+            Array.Resize<GameObject>(ref temp, i + 1);
+            temp[i] = collider.gameObject;
+            i++;
         }
         units = temp;
     }

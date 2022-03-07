@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class UnitMove : MonoBehaviour
 {
     private BuildNavMesh buildNavMesh;
+    private BattleManager battleManager;
     private NavMeshAgent agent;
     private Animator animator;
     public Vector3 goal;
@@ -18,23 +19,24 @@ public class UnitMove : MonoBehaviour
     {
         agent    = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        buildNavMesh = GameObject.Find("Earth").GetComponent<BuildNavMesh>();
+        buildNavMesh  = GameObject.Find("Earth").GetComponent<BuildNavMesh>();
+        battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
     }
 
     void Update()
     {
         if (die) return;
         animator.SetFloat("Speed", agent.velocity.sqrMagnitude);
-        if (agent.remainingDistance < distance)
-        {
-            agent.isStopped = true;
-            if (target == null) {
-                animator.SetBool("Attack", false);
-                Destroy(targetMarker);
-            } else {
-                transform.LookAt(target.transform);
-                Attack();
-            }
+
+        if (agent.remainingDistance > distance) return;
+
+        agent.isStopped = true;
+        if (target == null) {
+            animator.SetBool("Attack", false);
+            Destroy(targetMarker);
+        } else {
+            transform.LookAt(target.transform);
+            Attack();
         }
     }
 
@@ -62,12 +64,10 @@ public class UnitMove : MonoBehaviour
             return;
         }
 
-        float atk = GetComponent<UnitStatus>().status.atk;
         if (target.gameObject.tag == "Enemy")
-            target.GetComponent<UnitStatus>().DecreaseStatus("hp", atk);
+            battleManager.AttackUnit(this.gameObject, target);
         else
-            target.GetComponent<ObjectStatus>().DecreaseStatus("hp", atk);
-        Debug.Log(target.GetComponent<ObjectStatus>().status.hp);
+            battleManager.AttackObject(this.gameObject, target);
     }
 
     // 死んだアニメーション

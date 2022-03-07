@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StatusBluePrint
 {
-    public float hp { get; set; }
+    public float hp  { get; set; }
     public float atk { get; set; }
 
     public StatusBluePrint(float hp, float atk)

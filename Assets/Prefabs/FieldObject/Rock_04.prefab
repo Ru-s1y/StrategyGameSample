@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 560454708}
   m_Layer: 0
   m_Name: Rock_04
-  m_TagString: Untagged
+  m_TagString: Stone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -109,6 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b697ff845b39641ee9a0505931328d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objName: 
+  particlePrefab: {fileID: 7993021130112922060, guid: 2cc198b7d31954d42b85122eb4460a01, type: 3}
   defaultHp: 20
   defaultResource: 200
+  defaultParticleHeight: 0.3
   rebuildTime: 2

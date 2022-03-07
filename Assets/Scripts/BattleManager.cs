@@ -10,6 +10,7 @@ public class BattleManager : MonoBehaviour
         UnitStatus targetStatus = target.GetComponent<UnitStatus>();
 
         targetStatus.DecreaseStatus("hp", unitStatus.status.atk);
+        Debug.Log(targetStatus.status.hp);
     }
 
     public void AttackObject(GameObject unit, GameObject obj)
@@ -18,5 +19,6 @@ public class BattleManager : MonoBehaviour
         ObjectStatus objStatus  = obj.GetComponent<ObjectStatus>();
 
         objStatus.DecreaseStatus("hp", unitStatus.status.atk);
+        Debug.Log(objStatus.status.hp);
     }
 }

@@ -51,6 +51,8 @@ public class ObjectStatus : MonoBehaviour
         property.SetValue(status, updatedValue);
 
         // パーティクルの表示
+        if (particle != null)
+            Destroy(particle);
         Vector3 objSize = GetComponent<MeshCollider>().bounds.size;
         Vector3 objPos  = transform.position;
         objPos.y += (objName == "Wood") ? defaultParticleHeight : objSize.y;
