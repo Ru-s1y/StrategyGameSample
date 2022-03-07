@@ -6,11 +6,11 @@ using UnityEngine.AI;
 public class BuildNavMesh : MonoBehaviour
 {
     private NavMeshSurface navSur;
-    public float delayTime = 1f;
+    public float delayTime = 0.5f;
 
     void Start()
     {
-        navSur = GameObject.Find("Earth").GetComponent<NavMeshSurface>();
+        navSur = GetComponent<NavMeshSurface>();
     }
 
     public void RebuildNavMesh()
