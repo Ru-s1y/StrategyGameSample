@@ -73,4 +73,5 @@ crashlytics-build.properties
 
 .vscode
 Assets/Import
+Fonts/
 ProjectSettings/Packages/com.unity.probuilder/Settings.json

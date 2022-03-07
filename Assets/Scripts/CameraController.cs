@@ -19,22 +19,19 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        float moveSpeed = panSpeed * Time.deltaTime;
+
         if(Input.GetKey("w"))
-        {
-            transform.Translate(Vector3.forward * panSpeed * Time.deltaTime, Space.World);
-        }
+            transform.Translate(Vector3.forward * moveSpeed, Space.World);
+
         if(Input.GetKey("s"))
-        {
-            transform.Translate(Vector3.back * panSpeed * Time.deltaTime, Space.World);
-        }
+            transform.Translate(Vector3.back  * moveSpeed, Space.World);
+
         if(Input.GetKey("a"))
-        {
-            transform.Translate(Vector3.left * panSpeed * Time.deltaTime, Space.World);
-        }
+            transform.Translate(Vector3.left  * moveSpeed, Space.World);
+
         if(Input.GetKey("d"))
-        {
-            transform.Translate(Vector3.right * panSpeed * Time.deltaTime, Space.World);
-        }
+            transform.Translate(Vector3.right * moveSpeed, Space.World);
 
         scroll = Input.GetAxis("Mouse ScrollWheel");
         transform.position    = SetScrollHeight();

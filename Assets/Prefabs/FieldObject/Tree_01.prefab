@@ -12,12 +12,13 @@ GameObject:
   - component: {fileID: 4664310654637935848}
   - component: {fileID: 4664310654638935592}
   - component: {fileID: 428667078608423924}
+  - component: {fileID: 8732679781630490688}
   m_Layer: 0
   m_Name: Tree_01
-  m_TagString: Untagged
+  m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4664310654641360072
 Transform:
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4664310654640869608}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.47215, y: 0, z: 7.6684513}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -96,3 +97,21 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 6c7eaede4efc960409fb9ef2dfb77f29, type: 3}
+--- !u!114 &8732679781630490688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4664310654640869608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b697ff845b39641ee9a0505931328d6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objName: 
+  particlePrefab: {fileID: 7993021130112922060, guid: 8a4598ec5aece4e7fb961664616b5150, type: 3}
+  defaultHp: 20
+  defaultResource: 200
+  defaultParticleHeight: 0.3
+  rebuildTime: 2
