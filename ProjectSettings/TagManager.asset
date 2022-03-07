@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Terrian
+  - Stone
+  - Tree
+  - Food
+  - Wood
   layers:
   - Default
   - TransparentFX

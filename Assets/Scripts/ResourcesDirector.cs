@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ResourcesDirector : MonoBehaviour
 {
     public ResourcesBluePrint resources;
-    public int defaultValue = 200;
+    public float defaultValue = 200f;
     private PropertyInfo property;
 
     public Text wood;
@@ -24,9 +24,9 @@ public class ResourcesDirector : MonoBehaviour
 
     void Update()
     {
-        wood.text  = resources.wood.ToString();
-        stone.text = resources.stone.ToString();
-        food.text  = resources.food.ToString();
+        wood.text  = resources.Wood.ToString();
+        stone.text = resources.Stone.ToString();
+        food.text  = resources.Food.ToString();
 
         if (timeDis >= 1) {
             float dTime = 1f / Time.deltaTime;
@@ -36,22 +36,22 @@ public class ResourcesDirector : MonoBehaviour
         timeDis += Time.deltaTime;
     }
 
-    private int GetPropertyValue(string propertyName)
+    private float GetPropertyValue(string propertyName)
     {
         property = typeof(ResourcesBluePrint).GetProperty(propertyName);
-        return (int)property.GetValue(resources);
+        return (float)property.GetValue(resources);
     }
 
-    public void Increase(string propertyName, int value)
+    public void Increase(string propertyName, float value)
     {
-        int updatedValue = GetPropertyValue(propertyName) + value;
+        float updatedValue = GetPropertyValue(propertyName) + value;
         property.SetValue(resources, updatedValue);
     }
 
-    public void Decrease(string propertyName, int value)
+    public void Decrease(string propertyName, float value)
     {
-        int propValue = GetPropertyValue(propertyName);
-        int updatedValue = 0;
+        float propValue = GetPropertyValue(propertyName);
+        float updatedValue = 0f;
         if (propValue >= value)
             updatedValue = propValue - value;
         property.SetValue(resources, updatedValue);

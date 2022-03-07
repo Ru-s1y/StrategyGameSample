@@ -3,14 +3,14 @@ using System.Collections;
 
 public class ResourcesBluePrint
 {
-    public int wood { get; set;}
-    public int stone { get; set; }
-    public int food { get; set; }
+    public float Wood  { get; set;}
+    public float Stone { get; set; }
+    public float Food  { get; set; }
 
-    public ResourcesBluePrint(int wood, int stone, int food)
+    public ResourcesBluePrint(float wood, float stone, float food)
     {
-        this.wood  = wood;
-        this.stone = stone;
-        this.food  = food;
+        this.Wood  = wood;
+        this.Stone = stone;
+        this.Food  = food;
     }
 }

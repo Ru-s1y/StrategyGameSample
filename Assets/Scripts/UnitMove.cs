@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public class UnitMove : MonoBehaviour
 {
-    private NavMeshSurface navSur;
+    private BuildNavMesh buildNavMesh;
     private NavMeshAgent agent;
     private Animator animator;
     public Vector3 goal;
@@ -18,7 +18,7 @@ public class UnitMove : MonoBehaviour
     {
         agent    = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        navSur   = GameObject.Find("Earth").GetComponent<NavMeshSurface>();
+        buildNavMesh = GameObject.Find("Earth").GetComponent<BuildNavMesh>();
     }
 
     void Update()
@@ -51,20 +51,22 @@ public class UnitMove : MonoBehaviour
     public void Attack()
     {
         if (die || target == null)
-        {
-            Debug.Log("Target is Empty.");
             return;
-        }
         animator.SetBool("Attack", true);
     }
 
     public void HitAttack()
     {
-        // ターゲットがユニットかオブジェクトかの判定
-        float atk = GetComponent<UnitStatus>().status.atk;
-        target.GetComponent<ObjectStatus>().DecreaseStatus("hp", atk);
-        if (target == null)
+        if (target == null) {
             animator.SetBool("Attack", false);
+            return;
+        }
+
+        float atk = GetComponent<UnitStatus>().status.atk;
+        if (target.gameObject.tag == "Enemy")
+            target.GetComponent<UnitStatus>().DecreaseStatus("hp", atk);
+        else
+            target.GetComponent<ObjectStatus>().DecreaseStatus("hp", atk);
         Debug.Log(target.GetComponent<ObjectStatus>().status.hp);
     }
 
@@ -74,13 +76,6 @@ public class UnitMove : MonoBehaviour
         die = true;
         animator.SetBool("Die", true);
         Destroy(this.gameObject);
-        StartCoroutine("RebuildNavMesh");
-    }
-
-    // お前はもう死んでいる!!!
-    IEnumerator RebuildNavMesh()
-    {
-        navSur.BuildNavMesh();
-        yield return new WaitForSeconds(1f);
+        buildNavMesh.RebuildNavMesh();
     }
 }
