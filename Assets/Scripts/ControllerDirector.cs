@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using System;
 
 public class ControllerDirector : MonoBehaviour
@@ -40,6 +41,10 @@ public class ControllerDirector : MonoBehaviour
 
     void Update()
     {
+        // UIに重なってる時は座標が取れないようにする。
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
         // クリック押した時
         if (Input.GetMouseButtonDown(0) && !inputing)
         {

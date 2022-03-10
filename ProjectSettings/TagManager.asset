@@ -9,6 +9,7 @@ TagManager:
   - Tree
   - Food
   - Wood
+  - Enemy
   layers:
   - Default
   - TransparentFX
